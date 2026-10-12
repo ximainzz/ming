@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#241e16">
+<title>大明风华 · 明朝历史交互专题</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23b03a2e'/%3E%3Crect x='6' y='6' width='52' height='52' rx='8' fill='none' stroke='%23f4ead4' stroke-width='3'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f4ead4' font-family='KaiTi,STKaiti,serif'%3E明%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============ 顶部栏 ============ -->
+<header class="topbar">
+  <button class="back-btn" id="backBtn" aria-label="返回上级">‹</button>
+  <div class="brand" onclick="go('home')">
+    <span class="brand-seal">明</span>
+    <div class="brand-text">
+      <div class="brand-name">大明风华</div>
+      <div class="brand-sub">MING DYNASTY · 1368–1644</div>
+    </div>
+  </div>
+  <nav class="nav" id="mainNav">
+    <a href="#home" data-route-link="home"><span class="nav-dot"></span>首页</a>
+    <a href="#emperors" data-route-link="emperors"><span class="nav-dot"></span>帝王世系</a>
+    <a href="#politics" data-route-link="politics"><span class="nav-dot"></span>政治制度</a>
+    <a href="#culture" data-route-link="culture"><span class="nav-dot"></span>文化风物</a>
+    <a href="#war" data-route-link="war"><span class="nav-dot"></span>边镇烽烟</a>
+    <a href="#keju" data-route-link="keju" class="nav-keju"><span class="nav-dot"></span>模拟科考</a>
+  </nav>
+</header>
+
+<main id="app">
+
+<!-- ============ 一级页 · 首页 ============ -->
+<section class="page" id="home" data-route="home">
+  <div class="hero">
+    <div class="hero-slides">
+      <div class="hero-slide slide-0"></div>
+      <div class="hero-slide slide-1"></div>
+      <div class="hero-slide slide-2"></div>
+      <div class="hero-slide slide-3"></div>
+      <div class="hero-slide slide-4"></div>
+    </div>
+    <div class="hero-veil"></div>
+    <div class="hero-inner">
+      <div class="hero-kicker">MING DYNASTY INTERACTIVE EXHIBITION</div>
+      <h1 class="hero-title">大明<em>风华</em></h1>
+      <p class="hero-sub">明朝历史交互专题</p>
+      <p class="hero-desc">从洪武开国到甲申国变，276 年山河，16 位帝王。<br>帝王 · 政治 · 文化 · 烽烟——一部写不尽的王朝长卷。</p>
+      <div class="hero-actions">
+        <button class="btn btn-keju" onclick="go('keju')">模拟科考 · 金榜题名</button>
+        <button class="btn btn-gold" onclick="go('emperors')">进入帝王世系</button>
+        <button class="btn btn-ghost" onclick="scrollToId('stats')">王朝概览</button>
+      </div>
+    </div>
+    <div class="hero-caption" id="heroCaption"></div>
+    <div class="hero-dots" id="heroDots"></div>
+    <div class="hero-scroll"><span>下滑探索</span><i class="chevron"></i></div>
+  </div>
+
+  <div class="stats-band" id="stats">
+    <div class="stat-cell" onclick="go('data-reign')" role="link" tabindex="0">
+      <div class="stat-num">276<small>年</small></div>
+      <div class="stat-label">国祚 · 1368–1644</div>
+      <span class="stat-more">数据专题 · 点此详览 →</span>
+    </div>
+    <div class="stat-cell" onclick="go('data-emperors')" role="link" tabindex="0">
+      <div class="stat-num">16<small>帝</small></div>
+      <div class="stat-label">自洪武至崇祯</div>
+      <span class="stat-more">数据专题 · 点此详览 →</span>
+    </div>
+    <div class="stat-cell" onclick="go('data-zhenghe')" role="link" tabindex="0">
+      <div class="stat-num">7<small>次</small></div>
+      <div class="stat-label">郑和下西洋</div>
+      <span class="stat-more">数据专题 · 点此详览 →</span>
+    </div>
+    <div class="stat-cell" onclick="go('data-regions')" role="link" tabindex="0">
+      <div class="stat-num">2<small>京</small><small>13</small><small>省</small></div>
+      <div class="stat-label">明代行政区划</div>
+      <span class="stat-more">数据专题 · 点此详览 →</span>
+    </div>
+  </div>
+
+  <div class="wrap">
+    </div>
+
+    <div class="section-label">
+      <span class="seal sm stamp-2">览</span>
+      <div>
+        <h2 class="section-title">四大板块</h2>
+      </div>
+    </div>
+    <div class="rule"></div>
+
+    <div class="entry-grid">
+      <div class="entry-card" style="background-image:url('images/hero-lineage.jpg')" onclick="go('emperors')">
+        <span class="entry-seal">壹</span>
+        <div class="entry-body">
+          <div class="entry-name">帝王世系</div>
+          <p class="entry-desc">十六帝承续，三百年国祚。从洪武开国到崇祯自缢。</p>
+          <span class="entry-more">入内详览 →</span>
+        </div>
+      </div>
+      <div class="entry-card" style="background-image:url('images/hero-ministers.jpg')" onclick="go('politics')">
+        <span class="entry-seal">贰</span>
+        <div class="entry-body">
+          <div class="entry-name">政治制度</div>
+          <p class="entry-desc">内阁六部、厂卫监察、科举取士——皇权如何运转。</p>
+          <span class="entry-more">入内详览 →</span>
+        </div>
+      </div>
+      <div class="entry-card" style="background-image:url('images/hero-culture.jpg')" onclick="go('culture')">
+        <span class="entry-seal">叁</span>
+        <div class="entry-body">
+          <div class="entry-name">文化风物</div>
+          <p class="entry-desc">青花瓷、永乐大典、四大名著。衣冠器物与笔墨之间。</p>
+          <span class="entry-more">入内详览 →</span>
+        </div>
+      </div>
+      <div class="entry-card" style="background-image:url('images/hero-war.jpg')" onclick="go('war')">
+        <span class="entry-seal">肆</span>
+        <div class="entry-body">
+          <div class="entry-name">边镇烽烟</div>
+          <p class="entry-desc">九边重镇、海疆倭寇。从土木之变到萨尔浒。</p>
+          <span class="entry-more">入内详览 →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-top:76px">
+      <span class="seal sm">史</span>
+      <div>
+        <h2 class="section-title">王朝纲要</h2>
+        <p class="section-note">五个节点，读懂大明兴衰</p>
+      </div>
+    </div>
+    <div class="rule"></div>
+    <div class="timeline-vertical">
+      <div class="tl-item">
+        <div class="tl-year">1368 · 洪武开国</div>
+        <div class="tl-title">布衣天子即帝位，定都应天，国号大明</div>
+        <p class="tl-text">朱元璋削平群雄，北伐蒙元，建立中国历史上最后一个由汉族建立的大一统王朝。</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1402–1424 · 永乐盛世</div>
+        <div class="tl-title">迁都北京、七下西洋、修《永乐大典》</div>
+        <p class="tl-text">朱棣在位二十二年，北征蒙古、远航西洋，王朝声威远播，史称「永乐盛世」。</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1449 · 土木之变</div>
+        <div class="tl-title">英宗亲征瓦剌兵败被俘，京师震动</div>
+        <p class="tl-text">于谦力主固守，率军民赢得北京保卫战，挽大厦于将倾。</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1572–1620 · 由盛转衰</div>
+        <div class="tl-title">张居正改革一时中兴，万历怠政三十年</div>
+        <p class="tl-text">一条鞭法整顿财政，却难阻党争、边患与财政危机层层累积。</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1644 · 甲申国变</div>
+        <div class="tl-title">李自成破京师，崇祯自缢煤山，明朝灭亡</div>
+        <p class="tl-text">农民军入京，清军随后入关，276 年国祚自此终结。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 二级页 · 帝王世系 ============ -->
+<section class="page" id="emperors" data-route="emperors">
+  <div class="page-head">
+    <img src="images/hero-lineage.jpg" alt="大明世系卷轴">
+    <div class="page-head-inner">
+      <h2 class="page-head-title">帝王世系</h2>
+      <p class="page-head-sub">十六帝承续 · 三百年国祚</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="section-label">
+      <span class="seal sm stamp-2">系</span>
+      <div>
+        <h2 class="section-title">十六帝总览</h2>
+        <p class="section-note">明代共历十六帝，自太祖朱元璋始，至思宗朱由检终。玉牒长卷依在位先后排列，印章之朱者即可点击，进入帝王专题。</p>
+      </div>
+    </div>
+    <div class="rule"></div>
+    <div class="lineage" id="emperorGrid"></div>
+    <div class="keju-entry" onclick="go('keju')">
+      <div class="keju-entry-inner">
+        <span class="keju-entry-seal">榜</span>
+        <div class="keju-entry-body">
+          <div class="keju-entry-title">模拟科考 · 金榜题名</div>
+          <p class="keju-entry-desc">从童生到状元，四级科举答题进阶，难度逐级而上；与张居正、于谦等真实名臣同朝为臣，结业生成你的「明代功名等级表」。</p>
+          <span class="keju-entry-more">进入科考 →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 二级页 · 政治制度 ============ -->
+<section class="page" id="politics" data-route="politics">
+  <div class="page-head">
+    <img src="images/hero-ministers.jpg" alt="朝堂与百官">
+    <div class="page-head-inner">
+      <h2 class="page-head-title">政治制度</h2>
+      <p class="page-head-sub">皇权中枢 · 官僚体系 · 财政军事</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="section-label">
+      <span class="seal sm stamp-2">政</span>
+      <div>
+        <h2 class="section-title">中央行政架构</h2>
+        <p class="section-note">洪武废丞相后，皇帝直辖六部；内阁票拟、司礼监批红，形成明代独特的中枢运转。</p>
+      </div>
+    </div>
+    <div class="rule"></div>
+    <div class="organogram">
+      <div class="o-node o-king">皇帝<div class="o-sub">乾纲独断 · 朱批</div></div>
+      <div class="o-link"></div>
+      <div class="o-row o-council">
+        <div class="o-node">内阁<div class="o-sub">票拟 · 首辅权重</div></div>
+        <div class="o-node">司礼监<div class="o-sub">批红 · 宦官掌权</div></div>
+      </div>
+      <div class="o-link"></div>
+      <div class="o-node o-six">六部 · 吏 户 礼 兵 刑 工<div class="o-sub">行政执行</div></div>
+      <div class="o-bracket"><span>监察体系 · 直隶皇帝</span></div>
+      <div class="o-row o-supervise">
+        <div class="o-node">都察院<div class="o-sub">监察百官</div></div>
+        <div class="o-node">六科给事中<div class="o-sub">封驳稽察</div></div>
+        <div class="o-node">锦衣卫 · 东厂<div class="o-sub">侦缉刑狱</div></div>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-top:64px">
+      <span class="seal sm">制</span>
+      <div>
+        <h2 class="section-title">六大制度</h2>
+        <p class="section-note">从选官到赋税，支撑大明三百年运转的制度骨架</p>
+      </div>
+    </div>
+    <div class="rule"></div>
+    <div class="hub">
+      <div class="hub-ring"></div>
+      <div class="hub-core">
+        <span class="hub-seal">皇</span>
+        <div class="hub-name">皇帝</div>
+        <div class="hub-sub">乾纲独断</div>
+      </div>
+      <div class="hub-node p1"><span class="hn-seal">阁</span><div class="hn-name">内阁制度</div><div class="hn-sub">票拟拟旨 · 首辅权重</div></div>
+      <div class="hub-node p2"><span class="hn-seal">厂</span><div class="hn-name">厂卫监察</div><div class="hn-sub">锦衣东厂 · 皇权耳目</div></div>
+      <div class="hub-node p3"><span class="hn-seal">科</span><div class="hn-name">科举取士</div><div class="hn-sub">乡会殿试 · 八股取士</div></div>
+      <div class="hub-node p4"><span class="hn-seal">赋</span><div class="hn-name">一条鞭法</div><div class="hn-sub">赋役折银 · 万历新政</div></div>
+      <div class="hub-node p5"><span class="hn-seal">卫</span><div class="hn-name">卫所制度</div><div class="hn-sub">军籍世袭 · 遍布全国</div></div>
+      <div class="hub-node p6"><span class="hn-seal">册</span><div class="hn-name">黄册鱼鳞</div><div class="hn-sub">户籍田亩 · 赋役根基</div></div>
+      <div class="hub-cap">选官 · 决策 · 监察 · 财政 · 军事 · 户籍——六大制度环拱皇权</div>
+    </div>
+
+    <div class="section-label" style="margin-top:64px">
+      <span class="seal sm">臣</span>
+      <div>
+        <h2 class="section-title">庙堂名臣</h2>
+        <p class="section-note">制度靠人运转，他们撑起了大明的朝堂</p>
+      </div>
+    </div>
+    <div class="rule"></div>
+    <div class="minister-strip">
+      <div class="minister-card"><div class="m-seal">革</div><div class="m-name">张居正</div><div class="m-role">内阁首辅 · 一条鞭法</div></div>
+      <div class="minister-card"><div class="m-seal">忠</div><div class="m-name">于谦</div><div class="m-role">兵部尚书 · 北京保卫战</div></div>
+      <div class="minister-card"><div class="m-seal">廉</div><div class="m-name">海瑞</div><div class="m-role">清官直臣 · 抬棺进谏</div></div>
+      <div class="minister-card"><div class="m-seal">谋</div><div class="m-name">徐阶</div><div class="m-role">内阁首辅 · 扳倒严嵩</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 二级页 · 文化风物 ============ -->
+<section class="page" id="culture" data-route="culture">
+  <div class="page-head">
+    <img src="images/hero-culture.jpg" alt="大明风物">
+    <div class="page-head-inner">
+      <h2 class="page-head-title">文化风物</h2>
+      <p class="page-head-sub">衣冠 · 器物 · 文学 · 科技</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="section-label">
+      <span class="seal sm stamp-2">雅</span>
+      <div>
+        <h2 class="section-title">大明的日常与审美</h2>
+        <p class="section-note">切换分类，浏览大明三百年的物质与精神世界</p>
+      </div>
+    </div>
+    <div class="rule"></div>
+    <div class="tabs" id="cultureTabs">
+      <button class="tab-btn active" data-tab="dress">衣冠</button>
+      <button class="tab-btn" data-tab="object">器物</button>
+      <button class="tab-btn" data-tab="book">文学</button>
+      <button class="tab-btn" data-tab="tech">科技</button>
+    </div>
+
+    <div class="tab-panel active" data-panel="dress">
+      <div class="feature-row">
+        <div class="feature-card">
+          <img src="images/culture-fushi.jpg" alt="明代服饰">
+          <div class="feature-body">
+            <div class="feature-title">衣冠之制</div>
+            <span class="feature-tag">服饰 · 冠带</span>
+            <p class="feature-desc">明制服饰等级森严：皇帝龙袍十二章纹，百官按品级佩补子，文禽武兽；乌纱帽、圆领袍、马面裙，皆成后世记忆里的「大明风骨」。</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <img src="images/culture-palace.jpg" alt="紫禁城宫阙">
+          <div class="feature-body">
+            <div class="feature-title">宫阙营造</div>
+            <span class="feature-tag">建筑 · 都城</span>
+            <p class="feature-desc">永乐年间营建北京城，紫禁城九重宫阙、中轴对称，红墙黄瓦。至今仍是世界现存规模最大的宫殿建筑群。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" data-panel="object">
+      <div class="feature-row">
+        <div class="feature-card">
+          <img src="images/culture-qinghua.jpg" alt="青花瓷器">
+          <div class="feature-body">
+            <div class="feature-title">青花与瓷</div>
+            <span class="feature-tag">器物 · 瓷器</span>
+            <p class="feature-desc">青花瓷在明代走向巅峰：永宣青花浓艳、成化斗彩清雅、嘉靖五彩绚烂。景德镇「天下窑器所聚」，瓷器远销亚非欧。</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <img src="images/culture-craft.jpg" alt="宣德炉与明式家具">
+          <div class="feature-body">
+            <div class="feature-title">百工与家具</div>
+            <span class="feature-tag">器物 · 工艺</span>
+            <p class="feature-desc">宣德炉铜质精纯、色泽温润；景泰蓝、漆器各擅胜场。明式家具线条简练，被誉为世界家具的巅峰。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" data-panel="book">
+      <div class="feature-row">
+        <div class="feature-card">
+          <img src="images/culture-book.jpg" alt="古籍书册">
+          <div class="feature-body">
+            <div class="feature-title">典籍之盛</div>
+            <span class="feature-tag">书籍 · 典籍</span>
+            <p class="feature-desc">《永乐大典》全书逾三亿七千万字，为古代最大的百科全书；《天工开物》《农政全书》集科技之大成。</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <img src="images/culture-market.jpg" alt="市井书坊与戏台">
+          <div class="feature-body">
+            <div class="feature-title">小说与戏曲</div>
+            <span class="feature-tag">文学 · 市民文化</span>
+            <p class="feature-desc">《三国演义》《水浒传》《西游记》相继问世，白话小说走向成熟；汤显祖《牡丹亭》与昆曲盛行，市井文化空前繁荣。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" data-panel="tech">
+      <div class="feature-row">
+        <div class="feature-card">
+          <img src="images/culture-science.jpg" alt="天工开物农技">
+          <div class="feature-body">
+            <div class="feature-title">天工开物</div>
+            <span class="feature-tag">科技 · 农工</span>
+            <p class="feature-desc">宋应星《天工开物》系统记载农业与手工业生产技术，被誉为「中国 17 世纪的工艺百科全书」。</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <img src="images/culture-herb.jpg" alt="本草纲目药草">
+          <div class="feature-body">
+            <div class="feature-title">本草纲目</div>
+            <span class="feature-tag">科技 · 医药</span>
+            <p class="feature-desc">李时珍历时二十七载编成《本草纲目》，收载药物一千八百九十二种，是集大成的药物学巨著。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 二级页 · 边镇烽烟 ============ -->
+<section class="page" id="war" data-route="war">
+  <div class="page-head">
+    <img src="images/hero-war.jpg" alt="边镇烽烟">
+    <div class="page-head-inner">
+      <h2 class="page-head-title">边镇烽烟</h2>
+      <p class="page-head-sub">九边重镇 · 海疆烽火</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="section-label">
+      <span class="seal sm stamp-2">烽</span>
+      <div>
+        <h2 class="section-title">战争时间线</h2>
+        <p class="section-note">点击任意节点，展开该役详情</p>
+      </div>
+    </div>
+    <div class="rule"></div>
+    <div class="war-timeline">
+      <div class="war-line" id="warLine"></div>
+      <div class="war-detail" id="warDetail"></div>
+    </div>
+
+    <div class="section-label" style="margin-top:64px">
+      <span class="seal sm">镇</span>
+      <div>
+        <h2 class="section-title">九边重镇</h2>
+        <p class="section-note">东起鸭绿江，西抵嘉峪关，九大军事重镇拱卫京师</p>
+      </div>
+    </div>
+    <div class="rule"></div>
+    <div class="jiubian-wrap">
+      <div class="jiubian-map">
+        <svg viewBox="0 0 1200 620" role="img" aria-label="九边防线示意">
+          <!-- 山峦底衬 -->
+          <path class="jb-hill h1" d="M0,470 Q90,400 200,470 Z"/>
+          <path class="jb-hill h2" d="M150,470 Q260,380 400,470 Z"/>
+          <path class="jb-hill h3" d="M360,470 Q500,360 660,470 Z"/>
+          <path class="jb-hill h4" d="M620,470 Q780,370 960,470 Z"/>
+          <path class="jb-hill h5" d="M920,470 Q1060,390 1200,470 Z"/>
+          <!-- 长城防线：墙体 + 纵深虚线 -->
+          <polyline class="jb-wall" points="1050,190 985,206 905,215 852,230 805,242 748,254 700,264 645,277 590,286 540,284 485,274 432,263 370,252 315,246 255,240 200,234 150,226"/>
+          <polyline class="jb-depth" points="1050,168 985,182 905,190 852,204 805,214 748,225 700,233 645,246 590,254 540,252 485,243 432,234 370,224 315,219 255,214 200,209 150,203"/>
+          <line class="jb-axis" x1="70" y1="452" x2="1130" y2="452"/>
+          <!-- 墩台 -->
+          <g class="jb-towers">
+            <rect x="1038" y="181" width="9" height="16"/><rect x="968" y="193" width="9" height="16"/>
+            <rect x="893" y="203" width="9" height="16"/><rect x="793" y="231" width="9" height="16"/>
+            <rect x="688" y="252" width="9" height="16"/><rect x="578" y="275" width="9" height="16"/>
+            <rect x="473" y="264" width="9" height="16"/><rect x="358" y="243" width="9" height="16"/>
+            <rect x="243" y="231" width="9" height="16"/><rect x="138" y="217" width="9" height="16"/>
+          </g>
+          <!-- 方位 -->
+          <text x="600" y="120" class="jb-dir">漠 北 · 鞑靼 瓦剌</text>
+          <text x="600" y="540" class="jb-dir">中 原 · 京 畿</text>
+          <!-- 京师 -->
+          <g class="jb-capital" transform="translate(905,352)">
+            <rect x="-30" y="-17" width="60" height="34" rx="2"/>
+            <text y="7">京师</text>
+          </g>
+          <!-- 九镇节点 -->
+          <g class="jb-node" transform="translate(1050,190)">
+            <circle r="14" class="jb-dot"/><circle r="23" class="jb-ring"/>
+            <text y="42" class="jb-label">辽东镇</text><text y="58" class="jb-sub">广宁 · 北镇</text>
+          </g>
+          <g class="jb-node" transform="translate(905,215)">
+            <circle r="14" class="jb-dot"/><circle r="23" class="jb-ring"/>
+            <text y="42" class="jb-label">蓟州镇</text><text y="58" class="jb-sub">三屯营 · 迁西</text>
+          </g>
+          <g class="jb-node" transform="translate(805,242)">
+            <circle r="14" class="jb-dot"/><circle r="23" class="jb-ring"/>
+            <text y="-30" class="jb-label">宣府镇</text><text y="-14" class="jb-sub">宣府 · 宣化</text>
+          </g>
+          <g class="jb-node" transform="translate(700,264)">
+            <circle r="14" class="jb-dot"/><circle r="23" class="jb-ring"/>
+            <text y="42" class="jb-label">大同镇</text><text y="58" class="jb-sub">大同府</text>
+          </g>
+          <g class="jb-node" transform="translate(590,286)">
+            <circle r="14" class="jb-dot"/><circle r="23" class="jb-ring"/>
+            <text y="-30" class="jb-label">山西镇</text><text y="-14" class="jb-sub">偏头 · 宁武</text>
+          </g>
+          <g class="jb-node" transform="translate(485,274)">
+            <circle r="14" class="jb-dot"/><circle r="23" class="jb-ring"/>
+            <text y="42" class="jb-label">延绥镇</text><text y="58" class="jb-sub">榆林</text>
+          </g>
+          <g class="jb-node" transform="translate(370,252)">
+            <circle r="14" class="jb-dot"/><circle r="23" class="jb-ring"/>
+            <text y="-30" class="jb-label">宁夏镇</text><text y="-14" class="jb-sub">宁夏 · 银川</text>
+          </g>
+          <g class="jb-node" transform="translate(255,240)">
+            <circle r="14" class="jb-dot"/><circle r="23" class="jb-ring"/>
+            <text y="42" class="jb-label">固原镇</text><text y="58" class="jb-sub">固原州</text>
+          </g>
+          <g class="jb-node" transform="translate(150,226)">
+            <circle r="14" class="jb-dot"/><circle r="23" class="jb-ring"/>
+            <text y="-30" class="jb-label">甘肃镇</text><text y="-14" class="jb-sub">甘州 · 张掖</text>
+          </g>
+        </svg>
+        <span class="map-note">示意图 · 非精确疆界，九镇自东向西依长城一线展开</span>
+        <span class="map-swipe">← 左右滑动查看全图 →</span>
+      </div>
+      <div class="jiubian-detail" id="jiubianDetail"></div>
+      <div class="jb-facts">
+        <div class="jb-fact"><span class="jf-seal">墙</span><div><div class="jf-title">六千里防线</div><p>东起鸭绿江，西抵嘉峪关，绵延六千三百余里。洪武至永乐间逐段修筑边墙、墩台与关隘，构成北方第一道屏障。</p></div></div>
+        <div class="jb-fact"><span class="jf-seal">制</span><div><div class="jf-title">九边成制</div><p>九镇之制成于永乐至嘉靖间，后增设昌平、真保二镇，合称「九边十一镇」。各镇设总兵官、副总兵，下辖卫所军户。</p></div></div>
+        <div class="jb-fact"><span class="jf-seal">变</span><div><div class="jf-title">由卫所到募兵</div><p>卫所军制中后期败坏，军户逃亡日众。嘉靖起戚继光募义乌兵、编练新军，募兵渐成边防主力。</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 数据专题 · 国祚长卷 ============ -->
+<section class="page" id="data-reign" data-route="data-reign">
+  <div class="page-head page-head-ink">
+    <span class="head-watermark">祚</span>
+    <div class="page-head-inner">
+      <span class="page-head-kicker">数据专题 · 壹</span>
+      <h2 class="page-head-title">国祚长卷</h2>
+      <p class="page-head-sub">276 年 · 七个时代 · 五个转折</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="section-label">
+      <span class="seal sm stamp-2">祚</span>
+      <div>
+        <h2 class="section-title">时代长卷</h2>
+        <p class="section-note">276 年国祚划分为七个时代，色带宽度与年份成正比（窄屏可左右滑动）</p>
+      </div>
+    </div>
+    <div class="rule"></div>
+    <div class="era-band-wrap">
+      <div class="era-band">
+        <div class="era e1"><div class="era-name">洪武开国</div><div class="era-yr">1368–1398 · 30 年</div></div>
+        <div class="era e2"><div class="era-name">盛世扩张</div><div class="era-yr">1399–1435 · 37 年</div></div>
+        <div class="era e3"><div class="era-name">动荡中衰</div><div class="era-yr">1436–1464 · 29 年</div></div>
+        <div class="era e4"><div class="era-name">守成中兴</div><div class="era-yr">1465–1505 · 41 年</div></div>
+        <div class="era e5"><div class="era-name">危机累积</div><div class="era-yr">1506–1566 · 61 年</div></div>
+        <div class="era e6"><div class="era-name">改革与怠政</div><div class="era-yr">1567–1620 · 54 年</div></div>
+        <div class="era e7"><div class="era-name">末世崩解</div><div class="era-yr">1621–1644 · 24 年</div></div>
+      </div>
+      <div class="era-scale"><span>1368</span><span>1400</span><span>1450</span><span>1500</span><span>1550</span><span>1600</span><span>1644</span></div>
+    </div>
+
+    <div class="section-label" style="margin-top:64px">
+      <span class="seal sm">转</span>
+      <div>
+        <h2 class="section-title">五个转折</h2>
+        <p class="section-note">左右国祚走向的关键节点</p>
+      </div>
+    </div>
+    <div class="rule"></div>
+    <div class="timeline-vertical">
+      <div class="tl-item">
+        <div class="tl-year">1368 · 开国</div>
+        <div class="tl-title">朱元璋即帝位，定都应天</div>
+        <p class="tl-text">削平群雄、北伐蒙元，终结元朝统治，奠定三百年基业。</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1405 · 扬帆</div>
+        <div class="tl-title">郑和首次下西洋</div>
+        <p class="tl-text">此后 28 年间七次远航，明王朝声威远播至印度洋与东非。</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1449 · 危局</div>
+        <div class="tl-title">土木之变，于谦守京</div>
+        <p class="tl-text">英宗被俘、京师震动，北京保卫战保住社稷，王朝由盛转守。</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1581 · 改革</div>
+        <div class="tl-title">张居正推行一条鞭法</div>
+        <p class="tl-text">清丈田亩、整顿财政，为垂危的王朝续命十年。</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1644 · 国变</div>
+        <div class="tl-title">李自成破京，崇祯自缢</div>
+        <p class="tl-text">清军随后入关，276 年国祚就此终结。</p>
+      </div>
+    </div>
+    <button class="back-link" onclick="go('home')">← 返回首页</button>
+  </div>
+</section>
+
+<!-- ============ 数据专题 · 十六帝图鉴 ============ -->
+<section class="page" id="data-emperors" data-route="data-emperors">
+  <div class="page-head page-head-ink">
+    <span class="head-watermark">帝</span>
+    <div class="page-head-inner">
+      <span class="page-head-kicker">数据专题 · 贰</span>
+      <h2 class="page-head-title">十六帝图鉴</h2>
+      <p class="page-head-sub">在位时长 · 数据排行</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="emp-facts facts4">
+      <div class="fact-card"><div class="f-num">48<small>年</small></div><div class="f-label">在位最长 · 万历</div></div>
+      <div class="fact-card"><div class="f-num">17<small>年</small></div><div class="f-label">平均在位时长</div></div>
+      <div class="fact-card"><div class="f-num">1<small>月</small></div><div class="f-label">在位最短 · 泰昌</div></div>
+      <div class="fact-card"><div class="f-num">6<small>位</small></div><div class="f-label">在位超二十年</div></div>
+    </div>
+    <div class="section-label" style="margin-top:56px">
+      <span class="seal sm stamp-2">衡</span>
+      <div>
+        <h2 class="section-title">在位时长排行</h2>
+        <p class="section-note">条形长度与在位年数成正比 · 万历最长，泰昌不足一月</p>
+      </div>
+    </div>
+    <div class="rule"></div>
+    <div class="reign-bars" id="reignBars"></div>
+    <button class="back-link" onclick="go('home')">← 返回首页</button>
+  </div>
+</section>
+
+<!-- ============ 数据专题 · 七下西洋 ============ -->
+<section class="page" id="data-zhenghe" data-route="data-zhenghe">
+  <div class="page-head page-head-ink">
+    <span class="head-watermark">帆</span>
+    <div class="page-head-inner">
+      <span class="page-head-kicker">数据专题 · 叁</span>
+      <h2 class="page-head-title">七下西洋</h2>
+      <p class="page-head-sub">1405–1433 · 三十余国 · 远至东非</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="emp-facts facts4">
+      <div class="fact-card"><div class="f-num">7<small>次</small></div><div class="f-label">远航次数</div></div>
+      <div class="fact-card"><div class="f-num">30<small>余国</small></div><div class="f-label">遍访国家与地区</div></div>
+      <div class="fact-card"><div class="f-num">62<small>艘</small></div><div class="f-label">首航船队规模</div></div>
+      <div class="fact-card"><div class="f-num">2.7<small>万人</small></div><div class="f-label">首航随行人员</div></div>
+    </div>
+    <div class="section-label" style="margin-top:56px">
+      <span class="seal sm stamp-2">航</span>
+      <div>
+        <h2 class="section-title">七次远航</h2>
+        <p class="section-note">自永乐三年至宣德八年，前后历时二十八年</p>
+      </div>
+    </div>
+    <div class="rule"></div>
+    <div class="zhenghe-list" id="zhengheList"></div>
+    <button class="back-link" onclick="go('home')">← 返回首页</button>
+  </div>
+</section>
+
+<!-- ============ 数据专题 · 两京十三省 ============ -->
+<section class="page" id="data-regions" data-route="data-regions">
+  <div class="page-head page-head-ink">
+    <span class="head-watermark">域</span>
+    <div class="page-head-inner">
+      <span class="page-head-kicker">数据专题 · 肆</span>
+      <h2 class="page-head-title">两京十三省</h2>
+      <p class="page-head-sub">京师 · 南京 · 十三布政使司</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="section-label">
+      <span class="seal sm stamp-2">京</span>
+      <div>
+        <h2 class="section-title">两京</h2>
+        <p class="section-note">成祖迁都后，形成「两京」格局</p>
+      </div>
+    </div>
+    <div class="rule"></div>
+    <div class="region-grid">
+      <div class="region-card cap"><span class="r-seal">京</span><h3>京师 · 北直隶</h3><p>今北京、天津与河北大部。成祖迁都后为全国政治中心，「天子守国门」。</p></div>
+      <div class="region-card cap"><span class="r-seal">南</span><h3>南京 · 南直隶</h3><p>今江苏、安徽与上海。留都所在，仍设南京六部与守备衙门。</p></div>
+    </div>
+    <div class="section-label" style="margin-top:56px">
+      <span class="seal sm">省</span>
+      <div>
+        <h2 class="section-title">十三布政使司</h2>
+        <p class="section-note">明代省级行政区划，每省设布政使掌民政</p>
+      </div>
+    </div>
+    <div class="rule"></div>
+    <div class="region-grid">
+      <div class="region-card"><span class="r-seal">鲁</span><h3>山东</h3><p>治济南府，辖今山东半岛，运河要冲。</p></div>
+      <div class="region-card"><span class="r-seal">晋</span><h3>山西</h3><p>治太原府，表里山河，北接边镇。</p></div>
+      <div class="region-card"><span class="r-seal">豫</span><h3>河南</h3><p>治开封府，中原腹地，天下粮仓。</p></div>
+      <div class="region-card"><span class="r-seal">陕</span><h3>陕西</h3><p>治西安府，含今陕甘宁地区，西北门户。</p></div>
+      <div class="region-card"><span class="r-seal">蜀</span><h3>四川</h3><p>治成都府，天府之国，土司并存。</p></div>
+      <div class="region-card"><span class="r-seal">楚</span><h3>湖广</h3><p>治武昌府，辖今湖北湖南，「湖广熟天下足」。</p></div>
+      <div class="region-card"><span class="r-seal">赣</span><h3>江西</h3><p>治南昌府，科举人文之盛甲于天下。</p></div>
+      <div class="region-card"><span class="r-seal">浙</span><h3>浙江</h3><p>治杭州府，丝茶之利，海防重地。</p></div>
+      <div class="region-card"><span class="r-seal">闽</span><h3>福建</h3><p>治福州府，东南海疆，月港开洋。</p></div>
+      <div class="region-card"><span class="r-seal">粤</span><h3>广东</h3><p>治广州府，岭南门户，外贸重镇。</p></div>
+      <div class="region-card"><span class="r-seal">桂</span><h3>广西</h3><p>治桂林府，多民族聚居之地。</p></div>
+      <div class="region-card"><span class="r-seal">滇</span><h3>云南</h3><p>治昆明府，沐氏世镇，边陲要地。</p></div>
+      <div class="region-card"><span class="r-seal">黔</span><h3>贵州</h3><p>治贵阳府，永乐十一年设省，改土归流。</p></div>
+    </div>
+    <button class="back-link" onclick="go('home')">← 返回首页</button>
+  </div>
+</section>
+
+<!-- ============ 三级页 · 帝王专题 ============ -->
+<section class="page emperor-page" data-route="emperor-1">
+  <div class="page-head page-head-ink">
+    <span class="head-watermark">洪</span>
+    <div class="page-head-inner">
+      <h2 class="page-head-title">洪武大帝 · 朱元璋</h2>
+      <p class="page-head-sub">1328–1398 · 明太祖 · 开国皇帝</p>
+    </div>
+  </div>
+  
+  <div class="wrap">
+    <div class="bio-hero">
+      <div class="bio-portrait">
+        <div class="frame">
+          <span class="seal portrait-seal stamp">洪</span>
+          <img src="images/emperor-hongwu.jpg" alt="明太祖朱元璋坐像（南薰殿旧藏）">
+        </div>
+        <p class="portrait-caption">明太祖朱元璋坐像（南薰殿旧藏）</p>
+      </div>
+      <div class="bio-emblems"><div class="bio-emblem"><span class="be-num">31<small>年</small></span><span class="be-label">在位</span></div><div class="bio-emblem"><span class="be-num">1368</span><span class="be-label">登基</span></div><div class="bio-emblem"><span class="be-num">70<small>岁</small></span><span class="be-label">享年</span></div></div>
+    </div>
+        <div class="triptych">      <div class="screen-panel">
+        <div class="sc-top">
+          <span class="sc-index">壹</span>
+          <div class="sc-title">布衣天子</div>
+        </div>
+        <div class="sc-body"><p>濠州贫农出身，十七岁父母兄嫂相继饿死，入皇觉寺为僧，云游乞食。至正十二年投红巾军郭子兴部，自亲兵起家，灭陈友谅、张士诚，削平群雄。</p></div>
+        <div class="sc-foot">1328 生 · 1352 投军</div>
+      </div>      <div class="screen-panel sc-mid">
+        <div class="sc-top">
+          <span class="sc-index">贰</span>
+          <div class="sc-title">洪武之治</div>
+        </div>
+        <div class="sc-body"><p>立国之初天下凋敝，乃移民垦荒、减免赋税、兴修水利、解放奴婢；丈量全国田亩，编定赋役黄册与鱼鳞图册，三十年休养生息，天下渐安。</p></div>
+        <div class="sc-foot">1368 开国 · 建元洪武</div>
+      </div>      <div class="screen-panel">
+        <div class="sc-top">
+          <span class="sc-index">叁</span>
+          <div class="sc-title">集权改制</div>
+        </div>
+        <div class="sc-body"><p>废中书省与丞相，六部直隶皇帝；设锦衣卫侦缉，重开科举却以八股取士。胡惟庸、蓝玉两案株连数万，开国功臣殆尽。洪武三十一年崩，葬孝陵。</p></div>
+        <div class="sc-foot">1380 改制 · 1398 崩</div>
+      </div>    </div>
+    <div class="bio-strip">      <div class="bs-item"><span class="bs-year">1328</span><span class="bs-ev">生于濠州钟离</span></div>      <div class="bs-item"><span class="bs-year">1352</span><span class="bs-ev">投红巾军郭子兴部</span></div>      <div class="bs-item"><span class="bs-year">1368</span><span class="bs-ev">应天称帝，国号大明</span></div>      <div class="bs-item"><span class="bs-year">1380</span><span class="bs-ev">废丞相，皇权集中</span></div>      <div class="bs-item"><span class="bs-year">1398</span><span class="bs-ev">崩于应天，庙号太祖</span></div>    </div>
+    <div class="bio-back"><button class="back-link" onclick="go('emperors')">← 返回帝王世系</button></div></section>
+
+<section class="page emperor-page" data-route="emperor-2">
+  <div class="page-head page-head-ink">
+    <span class="head-watermark">永</span>
+    <div class="page-head-inner">
+      <h2 class="page-head-title">永乐大帝 · 朱棣</h2>
+      <p class="page-head-sub">1360–1424 · 明成祖 · 迁都北京</p>
+    </div>
+  </div>
+  
+  <div class="wrap">
+    <div class="bio-hero">
+      <div class="bio-portrait">
+        <div class="frame">
+          <span class="seal portrait-seal stamp">永</span>
+          <img src="images/emperor-yongle.jpg" alt="明成祖朱棣坐像（南薰殿旧藏）">
+        </div>
+        <p class="portrait-caption">明成祖朱棣坐像（南薰殿旧藏）</p>
+      </div>
+      <div class="bio-emblems"><div class="bio-emblem"><span class="be-num">22<small>年</small></span><span class="be-label">在位</span></div><div class="bio-emblem"><span class="be-num">1402</span><span class="be-label">登基</span></div><div class="bio-emblem"><span class="be-num">5<small>次</small></span><span class="be-label">亲征漠北</span></div></div>
+    </div>
+        <div class="triptych">      <div class="screen-panel">
+        <div class="sc-top">
+          <span class="sc-index">壹</span>
+          <div class="sc-title">靖难之役</div>
+        </div>
+        <div class="sc-body"><p>太祖第四子，封燕王，镇守北平。建文帝削藩，乃以「清君侧」为名起兵，历时四年攻入南京，建文帝不知所终，遂登帝位。</p></div>
+        <div class="sc-foot">1399 起兵 · 1402 即位</div>
+      </div>      <div class="screen-panel sc-mid">
+        <div class="sc-top">
+          <span class="sc-index">贰</span>
+          <div class="sc-title">永乐盛世</div>
+        </div>
+        <div class="sc-body"><p>迁都北京，营建紫禁城，形成「天子守国门」之局；修《永乐大典》汇天下典籍；五次亲征漠北，北元残部益衰，四方宾服。</p></div>
+        <div class="sc-foot">1420 迁都 · 五征漠北</div>
+      </div>      <div class="screen-panel">
+        <div class="sc-top">
+          <span class="sc-index">叁</span>
+          <div class="sc-title">扬帆远航</div>
+        </div>
+        <div class="sc-body"><p>永乐三年起，遣郑和率庞大船队七下西洋，遍访东南亚、印度洋、阿拉伯直至东非，前后历时近三十年，为世界航海史之壮举。</p></div>
+        <div class="sc-foot">1405 首航 · 1424 崩</div>
+      </div>    </div>
+    <div class="bio-strip">      <div class="bs-item"><span class="bs-year">1399</span><span class="bs-ev">以清君侧起兵</span></div>      <div class="bs-item"><span class="bs-year">1402</span><span class="bs-ev">攻入南京即帝位</span></div>      <div class="bs-item"><span class="bs-year">1405</span><span class="bs-ev">郑和首下西洋</span></div>      <div class="bs-item"><span class="bs-year">1420</span><span class="bs-ev">紫禁城成，迁都北京</span></div>      <div class="bs-item"><span class="bs-year">1424</span><span class="bs-ev">崩于榆木川，庙号成祖</span></div>    </div>
+    <div class="bio-back"><button class="back-link" onclick="go('emperors')">← 返回帝王世系</button></div></section>
+
+<section class="page emperor-page" data-route="emperor-3">
+  <div class="page-head page-head-ink">
+    <span class="head-watermark">万</span>
+    <div class="page-head-inner">
+      <h2 class="page-head-title">万历皇帝 · 朱翊钧</h2>
+      <p class="page-head-sub">1563–1620 · 明神宗 · 在位最久</p>
+    </div>
+  </div>
+  
+  <div class="wrap">
+    <div class="bio-hero">
+      <div class="bio-portrait">
+        <div class="frame">
+          <span class="seal portrait-seal stamp">万</span>
+          <img src="images/emperor-wanli.jpg" alt="明神宗朱翊钧坐像（南薰殿旧藏）">
+        </div>
+        <p class="portrait-caption">明神宗朱翊钧坐像（南薰殿旧藏）</p>
+      </div>
+      <div class="bio-emblems"><div class="bio-emblem"><span class="be-num">48<small>年</small></span><span class="be-label">在位·最长</span></div><div class="bio-emblem"><span class="be-num">10<small>岁</small></span><span class="be-label">即位</span></div><div class="bio-emblem"><span class="be-num">1619</span><span class="be-label">萨尔浒之败</span></div></div>
+    </div>
+        <div class="triptych">      <div class="screen-panel">
+        <div class="sc-top">
+          <span class="sc-index">壹</span>
+          <div class="sc-title">万历新政</div>
+        </div>
+        <div class="sc-body"><p>十岁即位，张居正辅政十年：以考成法整饬吏治，清丈田亩，推行一条鞭法，国库由亏转盈，史称「万历中兴」。</p></div>
+        <div class="sc-foot">1572 即位 · 1581 一条鞭</div>
+      </div>      <div class="screen-panel sc-mid">
+        <div class="sc-top">
+          <span class="sc-index">贰</span>
+          <div class="sc-title">万历三大征</div>
+        </div>
+        <div class="sc-body"><p>宁夏之役、援朝抗倭、播州之役相继爆发，明军三战皆捷，王朝武功一度复振；其中援朝之战历时七年，耗银数百万。</p></div>
+        <div class="sc-foot">1592–1600 三战皆捷</div>
+      </div>      <div class="screen-panel">
+        <div class="sc-top">
+          <span class="sc-index">叁</span>
+          <div class="sc-title">怠政与转折</div>
+        </div>
+        <div class="sc-body"><p>居正殁后遭清算，此后近三十年不上朝，党争、矿税、边患层层累积。萨尔浒一役明军大败，辽东攻守易势。万历四十八年崩。</p></div>
+        <div class="sc-foot">1619 萨尔浒 · 1620 崩</div>
+      </div>    </div>
+    <div class="bio-strip">      <div class="bs-item"><span class="bs-year">1572</span><span class="bs-ev">十岁即位，张居正辅政</span></div>      <div class="bs-item"><span class="bs-year">1581</span><span class="bs-ev">推行一条鞭法</span></div>      <div class="bs-item"><span class="bs-year">1592</span><span class="bs-ev">万历三大征始</span></div>      <div class="bs-item"><span class="bs-year">1619</span><span class="bs-ev">萨尔浒之败</span></div>      <div class="bs-item"><span class="bs-year">1620</span><span class="bs-ev">病逝，庙号神宗</span></div>    </div>
+    <div class="bio-back"><button class="back-link" onclick="go('emperors')">← 返回帝王世系</button></div></section>
+
+<section class="page emperor-page" data-route="emperor-4">
+  <div class="page-head page-head-ink">
+    <span class="head-watermark">崇</span>
+    <div class="page-head-inner">
+      <h2 class="page-head-title">末代天子 · 朱由检</h2>
+      <p class="page-head-sub">1611–1644 · 明思宗 · 煤山遗恨</p>
+    </div>
+  </div>
+  
+  <div class="wrap">
+    <div class="bio-hero">
+      <div class="bio-portrait">
+        <div class="frame">
+          <span class="seal portrait-seal stamp">崇</span>
+          <img src="images/emperor-chongzhen.jpg" alt="明思宗朱由检像（南薰殿旧藏）">
+        </div>
+        <p class="portrait-caption">明思宗朱由检像（南薰殿旧藏）</p>
+      </div>
+      <div class="bio-emblems"><div class="bio-emblem"><span class="be-num">17<small>年</small></span><span class="be-label">在位</span></div><div class="bio-emblem"><span class="be-num">1627</span><span class="be-label">登基</span></div><div class="bio-emblem"><span class="be-num">1644</span><span class="be-label">国变</span></div></div>
+    </div>
+        <div class="triptych">      <div class="screen-panel">
+        <div class="sc-top">
+          <span class="sc-index">壹</span>
+          <div class="sc-title">力挽危局</div>
+        </div>
+        <div class="sc-body"><p>天启七年兄终弟及即位，旋铲除魏忠贤，清算阉党，朝野为之一振，人称「励精图治」。然积弊已深，大厦将倾。</p></div>
+        <div class="sc-foot">1627 即位 · 除魏阉</div>
+      </div>      <div class="screen-panel sc-mid">
+        <div class="sc-top">
+          <span class="sc-index">贰</span>
+          <div class="sc-title">积重难返</div>
+        </div>
+        <div class="sc-body"><p>关外后金屡次叩边，关内流寇四起，天灾连年、财政崩溃。刚愎多疑，十七年间更换内阁首辅十九人，竟中反间计冤杀督师袁崇焕。</p></div>
+        <div class="sc-foot">1629 己巳 · 1630 冤杀</div>
+      </div>      <div class="screen-panel">
+        <div class="sc-top">
+          <span class="sc-index">叁</span>
+          <div class="sc-title">煤山遗恨</div>
+        </div>
+        <div class="sc-body"><p>崇祯十七年三月，李自成率大顺军破北京。十九日，朱由检自缢煤山寿皇亭旁，以发覆面，遗书「朕死无面目见祖宗」。明朝亡。</p></div>
+        <div class="sc-foot">1644 甲申国变</div>
+      </div>    </div>
+    <div class="bio-strip">      <div class="bs-item"><span class="bs-year">1627</span><span class="bs-ev">兄终弟及即帝位</span></div>      <div class="bs-item"><span class="bs-year">1629</span><span class="bs-ev">己巳之变，袁崇焕入卫</span></div>      <div class="bs-item"><span class="bs-year">1630</span><span class="bs-ev">中反间计，冤杀袁崇焕</span></div>      <div class="bs-item"><span class="bs-year">1644</span><span class="bs-ev">李自成破京，自缢煤山</span></div>    </div>
+    <div class="bio-back"><button class="back-link" onclick="go('emperors')">← 返回帝王世系</button></div></section>
+
+</main>
+
+<!-- ============ 移动端底部导航 ============ -->
+<nav class="tabbar" id="tabbar">
+  <a href="#home" data-route-link="home">
+    <svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg>
+    <span>首页</span>
+  </a>
+  <a href="#emperors" data-route-link="emperors">
+    <svg viewBox="0 0 24 24"><path d="M5 5h14M5 12h14M5 19h9"/><path d="M18 16.5l1.6 3.2 3.4.5-2.5 2.4.6 3.4-3.1-1.6-3.1 1.6.6-3.4-2.5-2.4 3.4-.5z"/></svg>
+    <span>帝王</span>
+  </a>
+  <a href="#politics" data-route-link="politics">
+    <svg viewBox="0 0 24 24"><path d="M12 3 4 6.5V11c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10V6.5z"/><path d="M9 12l2 2 4-4.5"/></svg>
+    <span>政治</span>
+  </a>
+  <a href="#culture" data-route-link="culture">
+    <svg viewBox="0 0 24 24"><path d="M4 19V5M8 19V9M12 19V7M16 19V11M20 19V4"/></svg>
+    <span>文化</span>
+  </a>
+  <a href="#war" data-route-link="war">
+    <svg viewBox="0 0 24 24"><path d="M4 4c5 1 11 4 16 8-5 4-11 7-16 8"/><path d="M4 4v16M20 12H4"/></svg>
+    <span>烽烟</span>
+  </a>
+</nav>
+
+<!-- ============ 页脚 ============ -->
+<footer class="footer">
+  <div class="f-brand">大明风华</div>
+  <p>明朝历史交互专题 · 新媒体产品设计课程作业</p>
+  <div class="f-seals">
+    <span class="seal">明</span>
+    <span class="seal">史</span>
+    <span class="seal">风</span>
+  </div>
+
+<!-- ============ 创新玩法 · 模拟科考 ============ -->
+<section class="page" id="keju" data-route="keju">
+  <div class="page-head">
+    <img src="images/culture-book.jpg" alt="科举与典籍">
+    <div class="page-head-inner">
+      <span class="page-head-kicker">创新玩法 · 科举模拟</span>
+      <h2 class="page-head-title">金榜题名</h2>
+      <p class="page-head-sub">从童生到进士 · 四级科举答题进阶</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="section-label">
+      <span class="seal sm stamp-2">榜</span>
+      <div>
+        <h2 class="section-title">模拟科考</h2>
+        <p class="section-note">童试、乡试、会试、殿试，四级难度逐级而上；答对进阶、答错落第，可复读再战。科考之年随你的表现推演，最终生成属于你的明代功名等级表。</p>
+      </div>
+    </div>
+    <div class="rule"></div>
+
+    <!-- 开场：选择起点 -->
+    <div class="keju-scene" id="kejuIntro">
+      <div class="keju-banner">
+        <div class="keju-banner-title">十年寒窗，只为一朝金榜</div>
+        <p class="keju-banner-sub">选择你的科考起点朝代，与真实的名臣同年同朝。每级 3 题、答对 2 题过关；殿试成绩决定你的最终功名。</p>
+      </div>
+      <div class="keju-eras" id="kejuEras"></div>
+      <div class="keju-actions">
+        <button class="btn-primary" onclick="kejuStart()">开始科考 →</button>
+        <div class="keju-best" id="kejuBest"></div>
+      </div>
+    </div>
+
+    <!-- 答题 -->
+    <div class="keju-scene" id="kejuQuiz" style="display:none">
+      <div class="quiz-head">
+        <span class="quiz-stage" id="kejuStageName">童试</span>
+        <span class="quiz-goal" id="kejuStageGoal">本关考取：生员（秀才）</span>
+        <span class="quiz-year" id="kejuYear">洪武三年（公元 1370 年）</span>
+        <span class="quiz-progress" id="kejuProgress">第 1 / 3 题</span>
+      </div>
+      <div class="quiz-q" id="kejuQuestion"></div>
+      <div class="quiz-opts" id="kejuOpts"></div>
+      <div class="keju-fb" id="kejuFb" style="display:none"></div>
+      <button class="btn-primary" id="kejuNextBtn" style="display:none" onclick="kejuNext()">下一题 →</button>
+    </div>
+
+    <!-- 落第 -->
+    <div class="keju-scene" id="kejuFail" style="display:none">
+      <div class="keju-fail-card">
+        <div class="keju-fail-seal">落第</div>
+        <div class="keju-fail-stage" id="kejuFailStage">乡试</div>
+        <p class="keju-fail-text" id="kejuFailText"></p>
+        <button class="btn-primary" onclick="kejuRetry()">复读重考 · 下科再战 →</button>
+      </div>
+    </div>
+
+    <!-- 功名档案 -->
+    <div class="keju-scene" id="kejuResult" style="display:none">
+      <div class="keju-result-card">
+        <div class="keju-final">
+          <div class="keju-final-seal">捷报</div>
+          <div class="keju-final-title" id="kejuFinalTitle">二甲 · 赐进士出身</div>
+          <div class="keju-final-era" id="kejuFinalEra">洪武八年</div>
+          <p class="keju-final-sub">你的明代功名等级表 · 从童生到金榜</p>
+        </div>
+        <div class="keju-log" id="kejuLog"></div>
+        <div class="keju-peers-head" id="kejuPeersHead">你的同期名臣</div>
+        <div class="keju-peers" id="kejuPeers"></div>
+        <p class="keju-note">* 年份与功名为游戏模拟推演，非史实纪年；人物与事迹均为真实历史。记录已存本地，可反复挑战更高功名。</p>
+        <div class="keju-actions">
+          <button class="btn-primary" onclick="kejuRestart()">重新科考</button>
+          <button class="btn-ghost" onclick="go('emperors')">返回帝王世系</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</footer>
+
+<button class="to-top" id="toTop" aria-label="回到顶部">↑</button>
+
+<script src="js/main.js"></script>
+</body>
+</html>
